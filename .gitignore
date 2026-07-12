@@ -22,3 +22,18 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+src/assets/images/avatar-01.jpg
+src/assets/images/avatar-02.jpg
+src/assets/images/avatar-03.jpg
+src/assets/images/avatar-04.jpg
+src/assets/images/avatar-05.jpg
+src/assets/images/avatar-06.jpg
+src/assets/images/avatar-07.jpg
+src/assets/images/hero.jpg
+src/assets/images/img-acompanamientos.jpg
+src/assets/images/img-aros-cebolla.jpg
+src/assets/images/img-bbq-bacon.jpg
+src/assets/images/img-hamburguesa.jpg
+src/assets/images/img-papas-loaded.jpg
+src/assets/images/img-pizza-margarita.jpg
+src/assets/images/img-pizza.jpg

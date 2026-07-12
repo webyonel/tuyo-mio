@@ -1,10 +1,136 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { productos, type Producto } from '../data/products';
+import { opiniones } from '../data/reviews';
+import heroImg from '../assets/images/hero.jpg';
+import bentoBurger from '../assets/images/img-hamburguesa.jpg';
+import bentoPizza from '../assets/images/img-pizza.jpg';
+import bentoAcomp from '../assets/images/img-acompanamientos.jpg';
 ---
 
 <Layout>
-	<h1>HOLA</h1>
+	<!-- HERO -->
+	<section class="hero">
+		<div class="hero__bg" style={`background-image: url('${heroImg.src}');`}></div>
+		<div class="hero__overlay"></div>
+		<div class="hero__content">
+			<span class="hero__eyebrow">Bienvenido a</span>
+			<h1 class="hero__title">Tuyo&amp;Mío</h1>
+			<p class="hero__subtitle">Hamburguesas a la parrilla, pizzas artesanales y los mejores acompañamientos. Comida rápida con sabor de casa.</p>
+			<div class="hero__buttons">
+				<a href="#ubicacion" class="btn btn--secondary">Cómo llegar</a>
+			</div>
+		</div>
+		<div class="hero__fade"></div>
+	</section>
+
+	<!-- BENTO -->
+	<section class="bento">
+		<div class="bento__inner">
+			<div class="bento__item bento__item--lg">
+				<img src={bentoBurger.src} alt="Hamburguesa a la parrilla" loading="lazy">
+				<div class="bento__caption">
+					<span>A la parrilla</span>
+					<h3>Hamburguesas</h3>
+				</div>
+			</div>
+			<div class="bento__item bento__item--sm">
+				<img src={bentoPizza.src} alt="Pizza artesanal" loading="lazy">
+				<div class="bento__caption">
+					<span>Recién horneada</span>
+					<h3>Pizza artesanal</h3>
+				</div>
+			</div>
+			<div class="bento__item bento__item--sm">
+				<img src={bentoAcomp.src} alt="Papas fritas y acompañamientos" loading="lazy">
+				<div class="bento__caption">
+					<span>Para compartir</span>
+					<h3>Acompañamientos</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- PRODUCTOS DESTACADOS -->
+	<section class="products" id="menu">
+		<div class="section__head">
+			<span class="section__eyebrow">Nuestra carta</span>
+			<h2 class="section__title">Lo más pedido</h2>
+			<p class="section__desc">Los favoritos de nuestra clientela, recién hechos en cada pedido.</p>
+		</div>
+		<div class="products__grid">
+			{productos.map((p: Producto) => (
+				<article class="card">
+					<div class="card__media">
+						<img src={p.imagen.src} alt={p.nombre} loading="lazy" />
+					</div>
+					<div class="card__body">
+						<h3 class="card__name">{p.nombre}</h3>
+						<p class="card__desc">{p.desc}</p>
+						<div class="card__footer">
+							<span class="card__price">{p.precio}</span>
+							<button class="btn btn--dark">Pedir</button>
+						</div>
+					</div>
+				</article>
+			))}
+		</div>
+	</section>
+
+	<!-- OPINIONES -->
+	<section class="reviews">
+		<div class="section__head">
+			<span class="section__eyebrow">Lo que dicen</span>
+			<h2 class="section__title">Nuestros clientes</h2>
+			<p class="section__desc">Reseñas reales de quienes ya pasaron por Tuyo&amp;Mío.</p>
+		</div>
+		<div class="reviews__viewport">
+			<div class="reviews__track" id="reviewsTrack">
+				{/* Duplicamos el set: cuando la primera mitad sale, la segunda está idéntica */}
+				{[...opiniones, ...opiniones].map((r, i) => (
+					<article class="review" key={i}>
+						<div class="review__stars">{'★'.repeat(r.estrellas)}{'☆'.repeat(5 - r.estrellas)}</div>
+						<p class="review__text">&ldquo;{r.texto}&rdquo;</p>
+						<div class="review__author">
+							<img src={r.avatar.src} alt={r.nombre} class="review__avatar" loading="lazy" />
+							<div>
+								<div class="review__name">{r.nombre}</div>
+								<div class="review__role">{r.rol}</div>
+							</div>
+						</div>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- UBICACIÓN -->
+	<!-- TODO: reemplazar dirección, horarios, contacto y enlace de Google Maps con datos reales -->
+	<section class="location" id="ubicacion">
+		<div class="location__map">
+			<iframe
+				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.0168878894506!2d-58.38375908477038!3d-34.60373446502757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccacf8f7c9b07%3A0x9b4e8d8e0d8d8d8d!2sObelisco!5e0!3m2!1ses-419!2sar!4v1700000000000"
+				width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+				referrerpolicy="no-referrer-when-downgrade" title="Ubicación de Tuyo&amp;Mío"></iframe>
+		</div>
+		<div class="location__info">
+			<span class="section__eyebrow">Encuéntranos</span>
+			<h2 class="section__title">Ubicación y horarios</h2>
+			<div class="location__group">
+				<h4>Dirección</h4>
+				<p>Esquina 4ta entre Serafín y Bembeta</p>
+			</div>
+			<div class="location__group">
+				<h4>Horarios</h4>
+				<ul class="hours">
+					<li><span>Todos los días</span><span>11:00 — 23:00</span></li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!-- FOOTER -->
+	<footer class="footer">
+		<p class="footer__copy">© 2026 Tuyo&amp;Mío. Todos los derechos reservados.</p>
+	</footer>
 </Layout>
