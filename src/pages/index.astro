@@ -3,9 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import { productos, type Producto } from '../data/products';
 import { opiniones } from '../data/reviews';
 import heroImg from '../assets/images/hero.jpg';
-import bentoBurger from '../assets/images/img-hamburguesa.jpg';
-import bentoPizza from '../assets/images/img-pizza.jpg';
-import bentoAcomp from '../assets/images/img-acompanamientos.jpg';
 ---
 
 <Layout>
@@ -28,21 +25,30 @@ import bentoAcomp from '../assets/images/img-acompanamientos.jpg';
 	<section class="bento">
 		<div class="bento__inner">
 			<div class="bento__item bento__item--lg">
-				<img src={bentoBurger.src} alt="Hamburguesa a la parrilla" loading="lazy">
+				<div class="placeholder">
+					<span class="placeholder__icon">🖼️</span>
+					<span class="placeholder__text">Esperando imagen</span>
+				</div>
 				<div class="bento__caption">
 					<span>A la parrilla</span>
 					<h3>Hamburguesas</h3>
 				</div>
 			</div>
 			<div class="bento__item bento__item--sm">
-				<img src={bentoPizza.src} alt="Pizza artesanal" loading="lazy">
+				<div class="placeholder">
+					<span class="placeholder__icon">🖼️</span>
+					<span class="placeholder__text">Esperando imagen</span>
+				</div>
 				<div class="bento__caption">
 					<span>Recién horneada</span>
 					<h3>Pizza artesanal</h3>
 				</div>
 			</div>
 			<div class="bento__item bento__item--sm">
-				<img src={bentoAcomp.src} alt="Papas fritas y acompañamientos" loading="lazy">
+				<div class="placeholder">
+					<span class="placeholder__icon">🖼️</span>
+					<span class="placeholder__text">Esperando imagen</span>
+				</div>
 				<div class="bento__caption">
 					<span>Para compartir</span>
 					<h3>Acompañamientos</h3>
@@ -62,7 +68,10 @@ import bentoAcomp from '../assets/images/img-acompanamientos.jpg';
 			{productos.map((p: Producto) => (
 				<article class="card">
 					<div class="card__media">
-						<img src={p.imagen.src} alt={p.nombre} loading="lazy" />
+						<div class="placeholder">
+							<span class="placeholder__icon">🖼️</span>
+							<span class="placeholder__text">Esperando imagen</span>
+						</div>
 					</div>
 					<div class="card__body">
 						<h3 class="card__name">{p.nombre}</h3>
